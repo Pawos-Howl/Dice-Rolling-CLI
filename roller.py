@@ -51,32 +51,30 @@ def numberStringer(listOfNumbers):
     barkAwoo = ""
     for element in range(0, len(listOfNumbers)-1): # no error here but 
         # why do you name it element if its not the element? its a bit confusing
-        barkAwoo.append(f'{element}, and ')
-    barkAwoo.append(listOfNumbers[len(listOfNumbers)])
+        barkAwoo.append(f'{element}, ')
+    barkAwoo.append(f'and {listOfNumbers[len(listOfNumbers)]}')
     return barkAwoo
         
 # I'm assuming that this is not finished
-def postWork(number, add = None):
+def postWork(number, parts, add = None):
     # Make it a list PAW!!!!!!!!!
-    if len(number) == 1 and add == None: return f'The random number is {number}'
-    if len(number) == 1 and add != None: return f'The random number is {number+add}.\nWhich accounts for an added {add}, and the original number was {number}'
-    barkkbarkkk = numberStringer(number)
-
-    pass
+    if len(parts) == 1 and add == None: return f'The random number is {number}'
+    if len(parts) == 1 and add != None: return f'The random number is {number+add}.\nWhich accounts for an added {add}, and the original number was {number}'
+    barkkbarkkk = numberStringer(parts)
+    if len(parts) != 1 and add == None: return f'The random number is {number}.\nIt is made up of the rolls: {barkkbarkkk}'
+    if len(parts) != 1 and add != None: return f'The random number is {number+add}.\nWhich accounts for an added {add}, and the original number was {number}'
 
 def mainRoll(rollInfo):
     valid_letters = [0,1,2,3,4,5,6,7,8,9,"d","+", "-", " "]
-    #usedCharacters = [0,1,2,3,4,5,6,7,8,9,"d","*","+", "-", " "]
-    spootSplit = rollInfo.split(" ")
+    spootSplit = rollInfo.split()
     # item 1 of spootSplit: Sides of dice & number of dice,
     # items 2+ of spootSplit: multipliers and adders
-    print(spootSplit)
 
     # This piece of code will loop through the first argument and check if it is
     # a valid input then add it to a list. If it is not a valid input, it will
     # raise a TypeError.
     firstargs = []
-    for char in spootSplit[0].split(""):
+    for char in spootSplit[0].split(" "):
         if char.isnumeric():
             # Valid!
             firstargs.append(int(char))
@@ -89,8 +87,9 @@ def mainRoll(rollInfo):
 
     d_split = spootSplit[0].split("d")
     amount_of_dice = d_split[0]
-    sides_of_dice = d_split[1]
+    sidesOfDice = d_split[1]
     dice_rolls = [] # for if you have to return each
+    dice_add = None
     dice_sum = 0 # for if you have to return the total sum
 
     if amount_of_dice == "":
@@ -98,19 +97,25 @@ def mainRoll(rollInfo):
     else:
         amount_of_dice = int(amount_of_dice)
 
-    if sides_of_dice == "":
+    if sidesOfDice == "":
         raise TypeError("Not a valid input!")
 
     else:
-        sides_of_dice = int(sides_of_dice)
+        sidesOfDice = int(sidesOfDice)
 
-    # IF YOU HAVE TO RETURN EACH SUM OF DICE:
-    for i in range(amount_of_dice):
-        dice_rolls.append(random.randint(1, sides_of_dice))
+    # # IF YOU HAVE TO RETURN EACH SUM OF DICE:
+    # for i in range(amount_of_dice):
+    #     dice_rolls.append(random.randint(1, sidesOfDice))
 
-    # IF YOU HAVE TO RETURN THE TOTAL SUM OF DICE:
+    # # IF YOU HAVE TO RETURN THE TOTAL SUM OF DICE:
+    # for i in range(amount_of_dice):
+    #     dice_sum += random.randint(1, sidesOfDice)
+
+    #This should work for both of the above things together (without the issue of different ints)
     for i in range(amount_of_dice):
-        dice_sum += random.randint(1, sides_of_dice)
+        AWOOOOO = random.randint(1, sidesOfDice)
+        dice_rolls.append(AWOOOOO)
+        dice_sum += AWOOOOO
 
     if len(spootSplit) > 1:
         # Arguments!
@@ -118,8 +123,13 @@ def mainRoll(rollInfo):
             if arg.startswith("+"):
                 # Add
                 dice_sum += int(arg[1:])
+                dice_add = int(arg[1:])
+            if arg.startswith("-"):
+                # Subtract
+                dice_sum -= int(arg[1:])
+                dice_add = int(arg[1:])
 
-    return dice_sum
+    return postWork(dice_sum, dice_rolls, dice_add)
 
     # except:
     #     return("An error has occured! Please try again! (check and make sure you do not have too many arguements)")

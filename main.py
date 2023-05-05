@@ -6,6 +6,8 @@ while True:
         print("What is your input:")
         rollValue = str(input())
 
+        roller.mainRoll(rollValue)
+
         # Testing Repeated Contains Function
         # print("What are you looking for:")
         # secondInput = str(input())
