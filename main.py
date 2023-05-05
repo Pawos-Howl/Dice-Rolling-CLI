@@ -21,5 +21,7 @@ while True:
         # print(f'The result of \"{rollValue}\" running the check is: {roller.validInput(rollValue, usedCharacters)}')
 
     except KeyboardInterrupt:
-        print("The Program is terminated manually!")
-        raise SystemExit
+        # print("The Program is terminated manually!")
+        # raise SystemExit # Dont do this
+        # Do this instead
+        exit("The Program is terminated manually!") # this prints the message and exits
