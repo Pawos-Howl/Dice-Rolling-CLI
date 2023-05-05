@@ -28,24 +28,10 @@ def repeatedContains(checkValue, checkList):
 # IF YOU REALLY WANT TO KEEP THIS A FUNCTION:
 # There is a much better way to do this if you really want to do it like this:
 
-# def contains(checkValue, checkList):
-#     for element in checkValue: # Loops through each element in checkValue
-#        if element in checkList: return True # If the element is in checkList, return True
-#    return False # If the loop ends, return False
 def contains(checkValue, checkList):
-    for element in range(0, len(checkValue)):
-        #print(checkValue[element])
-        if checkValue[element] in checkList: return True
-    return False
-
-
-# For this don't use pass in that if statment, just do an "if not" statement
-# like so:
-
-# def validInput(checkValue, checkList):
-#    for element in checkValue:
-#        if element not in checkList: return False
-#    return True
+    for element in checkValue: # Loops through each element in checkValue
+       if element in checkList: return True # If the element is in checkList, return True
+    return False # If the loop ends, return False
 
 # Or if you want a one-liner you can do this:
 # somevarname = [i for i in checkValue if i not in checkList] != [] # Boolean
@@ -70,20 +56,17 @@ def numberStringer(listOfNumbers):
     return barkAwoo
         
 # I'm assuming that this is not finished
-def postWork(number, multiplier = None, add = None):
+def postWork(number, add = None):
     # Make it a list PAW!!!!!!!!!
-    if len(number) == 1 and multiplier == None and add == None: return f'The random number is {number}'
-    if len(number) == 1 and multiplier == None and add != None: return f'The random number is {number+add}.\nWhich accounts for an added {add}, and the original number was {number}'
+    if len(number) == 1 and add == None: return f'The random number is {number}'
+    if len(number) == 1 and add != None: return f'The random number is {number+add}.\nWhich accounts for an added {add}, and the original number was {number}'
     barkkbarkkk = numberStringer(number)
 
     pass
 
-
-
 def mainRoll(rollInfo):
-    valid_letters = ['d',]
+    valid_letters = [0,1,2,3,4,5,6,7,8,9,"d","*","+", "-", " "]
     #usedCharacters = [0,1,2,3,4,5,6,7,8,9,"d","*","+", "-", " "]
-    #if validInput(rollInfo, usedCharacters) == False: return "ERROR: NOT A VALID INPUT"
     spootSplit = rollInfo.split(" ")
     # item 1 of spootSplit: Sides of dice & number of dice,
     # items 2+ of spootSplit: multipliers and adders
@@ -122,12 +105,12 @@ def mainRoll(rollInfo):
         sides_of_dice = int(sides_of_dice)
 
     # IF YOU HAVE TO RETURN EACH SUM OF DICE:
-    # for i in range(amount_of_dice):
-        # dice_rolls.append(random.randint(1, sides_of_dice))
+    for i in range(amount_of_dice):
+        dice_rolls.append(random.randint(1, sides_of_dice))
 
     # IF YOU HAVE TO RETURN THE TOTAL SUM OF DICE:
     for i in range(amount_of_dice):
-        dice_sum += random.randint(1, sides_of_dice)
+        dice_rolls.append(random.randint(1, sides_of_dice))
 
     if len(spootSplit) > 1:
         # Arguments!
@@ -137,16 +120,6 @@ def mainRoll(rollInfo):
                 dice_sum += int(arg[1:])
 
     return dice_sum
-    
 
-
-    # try:
-    #     if rollInfo.isnumeric() == True: return postWork(random.randint(rollInfo, 1))
-    #     if contains(rollInfo, "d") == True:
-    #         pass #arguemtns for the actuall rolling. seperated by a ";"
-    #     if contains(rollInfo, "*") == True:
-    #         pass #protocol for the multiplication
-    # except TypeError:
-    #     return "ERROR: NOT A VALID INPUT"
     # except:
     #     return("An error has occured! Please try again! (check and make sure you do not have too many arguements)")
