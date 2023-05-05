@@ -81,18 +81,59 @@ def postWork(number, multiplier = None, add = None):
 
 
 def mainRoll(rollInfo):
+    valid_letters = ['d',]
     #usedCharacters = [0,1,2,3,4,5,6,7,8,9,"d","*","+", "-", " "]
     #if validInput(rollInfo, usedCharacters) == False: return "ERROR: NOT A VALID INPUT"
     spootSplit = rollInfo.split(" ")
-    #baseSplit = spootSplit.split("d")
+    # item 1 of spootSplit: Sides of dice & number of dice,
+    # items 2+ of spootSplit: multipliers and adders
     print(spootSplit)
-    try:
-        if rollInfo.isnumeric() == True: return postWork(random.randint(rollInfo, 1))
-        if contains(rollInfo, "d") == True:
-            pass #arguemtns for the actuall rolling. seperated by a ";"
-        if contains(rollInfo, "x") == True:
-            pass #protocol for the multiplication
-    except TypeError:
-        return "ERROR: NOT A VALID INPUT"
-    except:
-        return("An error has occured! Please try again! (check and make sure you do not have too many arguements)")
+
+    # This piece of code will loop through the first argument and check if it is
+    # a valid input then add it to a list. If it is not a valid input, it will
+    # raise a TypeError.
+    firstargs = []
+    for char in spootSplit[0].split(""):
+        if char.isnumeric():
+            # Valid!
+            firstargs.append(int(char))
+        elif char in valid_letters:
+            # Valid!
+            firstargs.append(char)
+        else:
+            # Not valid!
+            raise TypeError("Not a valid input!")
+
+    d_split = spootSplit[0].split("d")
+    amount_of_dice = d_split[0]
+    sides_of_dice = d_split[1]
+    dice_rolls = []
+
+    if amount_of_dice == "":
+        amount_of_dice = 1
+    else:
+        amount_of_dice = int(amount_of_dice)
+
+    if sides_of_dice == "":
+        raise TypeError("Not a valid input!")
+
+    else:
+        sides_of_dice = int(sides_of_dice)
+
+    
+    for i in range(amount_of_dice):
+        dice_rolls.append(random.randint(1, sides_of_dice))
+
+    
+
+
+    # try:
+    #     if rollInfo.isnumeric() == True: return postWork(random.randint(rollInfo, 1))
+    #     if contains(rollInfo, "d") == True:
+    #         pass #arguemtns for the actuall rolling. seperated by a ";"
+    #     if contains(rollInfo, "*") == True:
+    #         pass #protocol for the multiplication
+    # except TypeError:
+    #     return "ERROR: NOT A VALID INPUT"
+    # except:
+    #     return("An error has occured! Please try again! (check and make sure you do not have too many arguements)")
