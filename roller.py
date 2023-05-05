@@ -107,7 +107,8 @@ def mainRoll(rollInfo):
     d_split = spootSplit[0].split("d")
     amount_of_dice = d_split[0]
     sides_of_dice = d_split[1]
-    dice_rolls = []
+    dice_rolls = [] # for if you have to return each
+    dice_sum = 0 # for if you have to return the total sum
 
     if amount_of_dice == "":
         amount_of_dice = 1
@@ -120,10 +121,22 @@ def mainRoll(rollInfo):
     else:
         sides_of_dice = int(sides_of_dice)
 
-    
-    for i in range(amount_of_dice):
-        dice_rolls.append(random.randint(1, sides_of_dice))
+    # IF YOU HAVE TO RETURN EACH SUM OF DICE:
+    # for i in range(amount_of_dice):
+        # dice_rolls.append(random.randint(1, sides_of_dice))
 
+    # IF YOU HAVE TO RETURN THE TOTAL SUM OF DICE:
+    for i in range(amount_of_dice):
+        dice_sum += random.randint(1, sides_of_dice)
+
+    if len(spootSplit) > 1:
+        # Arguments!
+        for arg in spootSplit[1:]:
+            if arg.startswith("+"):
+                # Add
+                dice_sum += int(arg[1:])
+
+    return dice_sum
     
 
 
