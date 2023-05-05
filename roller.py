@@ -65,7 +65,7 @@ def postWork(number, add = None):
     pass
 
 def mainRoll(rollInfo):
-    valid_letters = [0,1,2,3,4,5,6,7,8,9,"d","*","+", "-", " "]
+    valid_letters = [0,1,2,3,4,5,6,7,8,9,"d","+", "-", " "]
     #usedCharacters = [0,1,2,3,4,5,6,7,8,9,"d","*","+", "-", " "]
     spootSplit = rollInfo.split(" ")
     # item 1 of spootSplit: Sides of dice & number of dice,
@@ -110,7 +110,7 @@ def mainRoll(rollInfo):
 
     # IF YOU HAVE TO RETURN THE TOTAL SUM OF DICE:
     for i in range(amount_of_dice):
-        dice_rolls.append(random.randint(1, sides_of_dice))
+        dice_sum += random.randint(1, sides_of_dice)
 
     if len(spootSplit) > 1:
         # Arguments!
