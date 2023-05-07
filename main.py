@@ -6,7 +6,11 @@ while True:
         print("What is your input:")
         rollValue = str(input())
 
-        roller.mainRoll(rollValue)
+        #This is what happens when you let a furry choose variable names, lol
+        barkbarkkkAwrooo = roller.mainRoll(rollValue)
+        if barkbarkkkAwrooo[0:2] == "()": woofbarkkkAwroooAWOOOO = barkbarkkkAwrooo[2:] #FYI!!! THIS IS THE EMIPHERIAL CODE FOR DISCORD BOTS!!!!
+        else: woofbarkkkAwroooAWOOOO = barkbarkkkAwrooo
+        print(woofbarkkkAwroooAWOOOO)
 
         # Testing Repeated Contains Function
         # print("What are you looking for:")
@@ -23,7 +27,4 @@ while True:
         # print(f'The result of \"{rollValue}\" running the check is: {roller.validInput(rollValue, usedCharacters)}')
 
     except KeyboardInterrupt:
-        # print("The Program is terminated manually!")
-        # raise SystemExit # Dont do this
-        # Do this instead
-        exit("The Program is terminated manually!") # this prints the message and exits
+        exit("The program is closing...")

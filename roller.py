@@ -48,7 +48,7 @@ def validInput(checkValue, checkList):
 
 def numberStringer(listOfNumbers):
     if len(listOfNumbers) == 2: return f'{listOfNumbers[0]} and {listOfNumbers[1]}'
-    barkAwoo = ""
+    barkAwoo = "" #Why that name? ... don't ask ~~It may or may not be because I am a furry. who would have guessed~~
     for element in range(0, len(listOfNumbers)-1): # no error here but 
         # why do you name it element if its not the element? its a bit confusing
         barkAwoo.append(f'{element}, ')
@@ -56,10 +56,13 @@ def numberStringer(listOfNumbers):
     return barkAwoo
         
 # I'm assuming that this is not finished
-def postWork(number, parts, add = None):
+def postWork(number, parts, multiply = None, add = None):
     # Make it a list PAW!!!!!!!!!
-    if len(parts) == 1 and add == None: return f'The random number is {number}'
-    if len(parts) == 1 and add != None: return f'The random number is {number+add}.\nWhich accounts for an added {add}, and the original number was {number}'
+    if len(parts) == 1 and multiply == None and add == None: return f'The random number is {number}'
+    if len(parts) == 1 and multiply == None and add != None: return f'The random number is {number+add}.\nWhich accounts for an added {add}, and the original number was {number}'
+    
+    if len(parts) == 1 and multiply == None and add == None: return f'The random number is {number}'
+    if len(parts) == 1 and multiply == None and add != None: return f'The random number is {number+add}.\nWhich accounts for an added {add}, and the original number was {number}'
     barkkbarkkk = numberStringer(parts)
     if len(parts) != 1 and add == None: return f'The random number is {number}.\nIt is made up of the rolls: {barkkbarkkk}'
     if len(parts) != 1 and add != None: return f'The random number is {number+add}.\nWhich accounts for an added {add}, and the original number was {number}'
@@ -72,18 +75,22 @@ def mainRoll(rollInfo):
 
     # This piece of code will loop through the first argument and check if it is
     # a valid input then add it to a list. If it is not a valid input, it will
-    # raise a TypeError.
+    # raise a TypeError. #Not anymore :3
     firstargs = []
-    for char in spootSplit[0].split(" "):
+    for char in spootSplit[0].split():
+        print("Trying: "+char)
         if char.isnumeric():
             # Valid!
             firstargs.append(int(char))
+            print(char+" is numerically valid")
         elif char in valid_letters:
             # Valid!
             firstargs.append(char)
+            print(char+" is on the letters list valid")
         else:
             # Not valid!
-            raise TypeError("Not a valid input!")
+            #raise TypeError("Not a valid input!") #Not raising errors, because it would break a discord bot
+            return('()That is not a valid input')
 
     d_split = spootSplit[0].split("d")
     amount_of_dice = d_split[0]
@@ -98,7 +105,8 @@ def mainRoll(rollInfo):
         amount_of_dice = int(amount_of_dice)
 
     if sidesOfDice == "":
-        raise TypeError("Not a valid input!")
+        #raise TypeError("Not a valid input!")
+        return('()That is not a valid input')
 
     else:
         sidesOfDice = int(sidesOfDice)
