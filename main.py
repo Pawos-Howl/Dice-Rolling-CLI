@@ -7,8 +7,10 @@ while True:
         rollValue = str(input())
 
         #This is what happens when you let a furry choose variable names, lol
+        # ^ okay i get that but these are just too long and look like eachother.
+        # I recommend changing them.
         barkbarkkkAwrooo = roller.mainRoll(rollValue)
-        if barkbarkkkAwrooo[0:2] == "()":
+        if barkbarkkkAwrooo[0:2] == "()": # Just do `if "()" in varname:`
             woofbarkkkAwroooAWOOOO = barkbarkkkAwrooo[2:] #FYI!!! THIS IS THE EMIPHERIAL CODE FOR DISCORD BOTS!!!!
         else:
             woofbarkkkAwroooAWOOOO = barkbarkkkAwrooo
