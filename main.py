@@ -8,8 +8,10 @@ while True:
 
         #This is what happens when you let a furry choose variable names, lol
         barkbarkkkAwrooo = roller.mainRoll(rollValue)
-        if barkbarkkkAwrooo[0:2] == "()": woofbarkkkAwroooAWOOOO = barkbarkkkAwrooo[2:] #FYI!!! THIS IS THE EMIPHERIAL CODE FOR DISCORD BOTS!!!!
-        else: woofbarkkkAwroooAWOOOO = barkbarkkkAwrooo
+        if barkbarkkkAwrooo[0:2] == "()":
+            woofbarkkkAwroooAWOOOO = barkbarkkkAwrooo[2:] #FYI!!! THIS IS THE EMIPHERIAL CODE FOR DISCORD BOTS!!!!
+        else:
+            woofbarkkkAwroooAWOOOO = barkbarkkkAwrooo
         print(woofbarkkkAwroooAWOOOO)
 
         # Testing Repeated Contains Function
