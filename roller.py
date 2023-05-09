@@ -45,11 +45,13 @@ def numberStringer(listOfNumbers):
     barkAwoo = "" #Why that name? ... don't ask ~~It may or may not be because I am a furry. who would have guessed~~
     for element in range(0, len(listOfNumbers)-1): # no error here but 
         # why do you name it element if its not the element? its a bit confusing
-        barkAwoo.append(f'{element}, ')
-    barkAwoo.append(f'and {listOfNumbers[len(listOfNumbers)]}')
+        barkAwoo += f'{element}, ' # To add to a string you do += not append
+    barkAwoo += f'and {listOfNumbers[-1]}' # The index is out of range here, list counts start at 0, so you have to subtract one like you did above
+    # ^^^ -1 is the last item of the list
     return barkAwoo
 
 def postWork(number, parts, multiply = None, add = None):
+    # just do stuff like `if not multiply` or something to make it shorter
     if len(parts) == 1 and multiply == None and add == None: return f'The random number is {number}'
     if len(parts) == 1 and multiply == None and add != None: return f'The random number is {number+add}.\nAdded:{add}; Original Roll:{number}'
     
@@ -59,13 +61,13 @@ def postWork(number, parts, multiply = None, add = None):
     if len(parts) != 1 and multiply == None and add == None: return f'The random number is {number}.\nIt is made up of the rolls: {barkkbarkkk}'
     if len(parts) != 1 and multiply == None and add != None: return f'The random number is {number+add}.\nWhich accounts for an added {add}, and it is made up of the rolls: {barkkbarkkk}'
 
+    print("empty")
     if len(parts) != 1 and multiply != None and add == None: return f''
     if len(parts) != 1 and multiply != None and add != None: return f''
 
 def mainRoll(rollInfo):
     valid_letters = [0,1,2,3,4,5,6,7,8,9,"d","+", "-", " "]
-    #spootSplit = rollInfo.split()
-    spootSplit = list(rollInfo)
+    spootSplit = rollInfo.split(" ")
     # item 1 of spootSplit: Sides of dice & number of dice,
     # items 2+ of spootSplit: multipliers and adders
 
@@ -74,7 +76,8 @@ def mainRoll(rollInfo):
     # raise a TypeError. #Not anymore :3
     firstargs = []
     # for char in spootSplit[0].split():
-    for char in spootSplit[0].split():
+    test1 = [i for ele in spootSplit[0] for i in ele]
+    for char in test1:# spootSplit[0].split():
         # print("Trying: "+char)
         if char.isnumeric():
             # Valid!
@@ -85,13 +88,14 @@ def mainRoll(rollInfo):
             firstargs.append(char)
             # print(char+" is on the letters list valid")
         else:
+            print(char)
             # Not valid!
             #raise TypeError("Not a valid input!") #Not raising errors, because it would break a discord bot
             return('()That is not a valid input')
 
     d_split = spootSplit[0].split("d")
-    print(spootSplit)
-    print(d_split)
+    # print(spootSplit)
+    # print(d_split)
     amount_of_dice = d_split[0]
     #borked
     sidesOfDice = d_split[1]
