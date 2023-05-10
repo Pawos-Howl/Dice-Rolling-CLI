@@ -1,19 +1,5 @@
 import random
 
-# def numberStringer(listOfNumbers, method):
-#     barkAwoo = None
-#     if method == 1:
-#         if len(listOfNumbers) == 2: return f'{listOfNumbers[0]} and {listOfNumbers[1]}'
-#         barkAwoo = "" #Why that name? ... don't ask
-#         for element in range(0, len(listOfNumbers)-1):
-#             barkAwoo += f'{element}, '
-#         barkAwoo += f'and {listOfNumbers[-1]}' # The index is out of range here, list counts start at 0, so you have to subtract one like you did above
-#         # ^^^ -1 is the last item of the list
-#         return barkAwoo
-#     if method == 2:
-#         for element in range(0, len(listOfNumbers)-1): barkAwoo += f'{element}; '
-#         barkAwoo += f'{element}'
-
 def postWork(number, parts, multiply = None, add = None):
     # just do stuff like `if not multiply` or something to make it shorter
     if len(parts) == 1 and multiply == None and add == None: return f'The random number is {number}'
@@ -27,18 +13,6 @@ def postWork(number, parts, multiply = None, add = None):
         barkAwoo += f'{element}'
         barkAppend += f'Rolls:{barkAwoo}'
     return f'The result is {number}\n{barkAppend}'
-
-    # # Old code to remove
-    # if len(parts) == 1 and multiply == None and add != None: return f'The random number is {number+add}.\nAdded:{add}; Original Roll:{number};'
-    
-    # if len(parts) == 1 and multiply == None and add == None: return f'The random number is {number}'
-    # if len(parts) == 1 and multiply == None and add != None: return f'The random number is {number+add}.\nAdded:{add}; and the original number is {number};'
-    # barkkbarkkk = numberStringer(parts, 1)
-    # if len(parts) != 1 and multiply == None and add == None: return f'The random number is {number}.\nRolls:{barkkbarkkk};'
-    # if len(parts) != 1 and multiply == None and add != None: return f'The random number is {number+add}.\nAdded:{add}; Rolls:{barkkbarkkk};'
-
-    # if len(parts) != 1 and multiply != None and add == None: return f''
-    # if len(parts) != 1 and multiply != None and add != None: return f''
 
 def mainRoll(rollInfo):
     valid_letters = [0,1,2,3,4,5,6,7,8,9,"d","+", "-", " "]
