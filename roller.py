@@ -1,46 +1,22 @@
 import random
 
-def postWork(number, parts, multiply = None, add = None):
-    # just do stuff like `if not multiply` or something to make it shorter
-    if len(parts) == 1 and multiply == None and add == None: return f'The random number is {number}'
-    barkAppend = ''
-    if add != None: barkAppend += f'Added:{add}; '
-    if multiply != None: barkAppend += f'Multiplied:{multiply}; '
-    if len(parts) == 1: barkAppend += f'Roll:{parts[0]}'
-    if len(parts) >= 2: 
-        barkAwoo = ''
-        for element in range(0, len(parts)-1): barkAwoo += f'{element}; '
-        barkAwoo += f'{element}'
-        barkAppend += f'Rolls:{barkAwoo}'
-    return f'The result is {number}\n{barkAppend}'
-
 def mainRoll(rollInfo):
-    valid_letters = [0,1,2,3,4,5,6,7,8,9,"d","+", "-", " "]
-    spootSplit = rollInfo.split(" ")
-    # item 1 of spootSplit: Sides of dice & number of dice,
-    # items 2+ of spootSplit: multipliers and adders
-
-    # This piece of code will loop through the first argument and check if it is
-    # a valid input then add it to a list. If it is not a valid input, it will
-    # raise a TypeError. #Not anymore :3
-    firstargs = []
-    # for char in spootSplit[0].split():
-    test1 = [i for ele in spootSplit[0] for i in ele]
-    for char in test1:# spootSplit[0].split():
-        # print("Trying: "+char)
+    valid_letters = [0,1,2,3,4,5,6,7,8,9,'d','+', '-', ' ']
+    spaceSplit = rollInfo.split(' ')
+    # item 1 of spaceSplit: Sides of dice & number of dice,
+    # items 2+ of spaceSplit: multipliers and adders
+    # for char in spaceSplit[0].split():
+    test1 = [i for ele in spaceSplit[0] for i in ele]
+    for char in test1:
         if char.isnumeric():
-            # Valid!
-            firstargs.append(int(char))
+            pass
         elif char in valid_letters:
-            # Valid!
-            firstargs.append(char)
+            pass
         else:
-            print(char)
-            # Not valid!
             #raise TypeError("Not a valid input!") #Not raising errors, because it would break a discord bot
             return('()That is not a valid input')
 
-    d_split = spootSplit[0].split("d")
+    d_split = spaceSplit[0].split("d")
     amount_of_dice = d_split[0]
     sidesOfDice = d_split[1]
     dice_rolls = []
@@ -60,23 +36,14 @@ def mainRoll(rollInfo):
     else:
         sidesOfDice = int(sidesOfDice)
 
-    # # IF YOU HAVE TO RETURN EACH SUM OF DICE:
-    # for i in range(amount_of_dice):
-    #     dice_rolls.append(random.randint(1, sidesOfDice))
-
-    # # IF YOU HAVE TO RETURN THE TOTAL SUM OF DICE:
-    # for i in range(amount_of_dice):
-    #     dice_sum += random.randint(1, sidesOfDice)
-
-    #This should work for both of the above things together (without the issue of different ints)
     for i in range(amount_of_dice):
-        awooooo = random.randint(1, sidesOfDice)
-        dice_rolls.append(awooooo)
-        dice_sum += awooooo
+        randomNumber = random.randint(1, sidesOfDice)
+        dice_rolls.append(randomNumber)
+        dice_sum += randomNumber
 
-    if len(spootSplit) > 1:
+    if len(spaceSplit) > 1:
         # Arguments!
-        for arg in spootSplit[1:]:
+        for arg in spaceSplit[1:]:
             if arg.startswith("+"):
                 # Add
                 dice_sum += int(arg[1:])
@@ -91,4 +58,15 @@ def mainRoll(rollInfo):
                 dice_sum = int(dice_sum)*int(arg[1:])
                 dice_multiply = int(arg[1:])
 
-    return postWork(dice_sum, dice_rolls, dice_multiply, dice_add)
+    if len(dice_rolls) == 1 and dice_multiply == None and dice_add == None: return f'The random number is {dice_sum}'
+    appendRoll = ''
+    if dice_add != None: appendRoll += f'Added:{dice_add}; '
+    if dice_multiply != None: appendRoll += f'Multiplied:{dice_multiply}; '
+    if len(dice_rolls) == 1: appendRoll += f'Roll:{dice_rolls[0]}'
+    if len(dice_rolls) >= 2: 
+        rollsAppend = ''
+        for i in range(0, len(dice_rolls)-1):
+            rollsAppend += f'{dice_rolls[i]}, '
+        rollsAppend += f'{dice_rolls[i+1]}'
+        appendRoll += f'Rolls:{rollsAppend}'
+    return f'The result is {dice_sum}\n{appendRoll}'

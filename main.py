@@ -5,12 +5,12 @@ while True:
         print("What is your input:")
         rollValue = str(input())
 
-        barkbarkkkAwrooo = roller.mainRoll(rollValue)
-        if "()" in barkbarkkkAwrooo:
-            woofbarkkkAwroooAWOOOO = barkbarkkkAwrooo[2:] #FYI!!! THIS IS THE EMIPHERIAL CODE FOR DISCORD BOTS!!!!
+        rollOutput = roller.mainRoll(rollValue)
+        if "()" in rollOutput:
+            finalOutput = rollOutput[2:] #FYI!!! THIS IS THE EMIPHERIAL CODE FOR DISCORD BOTS!!!!
         else:
-            woofbarkkkAwroooAWOOOO = barkbarkkkAwrooo
-        print(woofbarkkkAwroooAWOOOO)
+            finalOutput = rollOutput
+        print(finalOutput)
 
     except KeyboardInterrupt:
         exit("The program is closing...")
