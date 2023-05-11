@@ -2,20 +2,27 @@ import random
 
 def mainRoll(rollInfo):
     # Checks if input is valid
-    valid_letters = [0,1,2,3,4,5,6,7,8,9,'d','+', '-', ' ']
+    valid_letters = [0,1,2,3,4,5,6,7,8,9,"d","+", "-", " "]
     spaceSplit = rollInfo.split(' ')
     # item 1 of spaceSplit: Sides of dice & number of dice,
     # items 2+ of spaceSplit: multipliers and adders
     test1 = [i for ele in spaceSplit[0] for i in ele]
     for char in test1:
-        if char.isnumeric() == False or char in valid_letters == False:
+        if char.isnumeric() == False and char in valid_letters == False:
             #raise TypeError("Not a valid input!") #Not raising errors, because it would break a discord bot
             return('()That is not a valid input')
 
     # Sets up splits and items in lists
-    d_split = spaceSplit[0].split("d")
-    amount_of_dice = d_split[0]
-    sidesOfDice = d_split[1]
+    try:
+        d_split = spaceSplit[0].split("d")
+        amount_of_dice = d_split[0]
+        sidesOfDice = d_split[1]
+    except IndexError: 
+        amount_of_dice = 1
+        sidesOfDice = spaceSplit[0]
+    except:
+        return('()An unknown error has occured')
+
     dice_rolls = []
     dice_add = None
     dice_multiply = None
