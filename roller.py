@@ -1,6 +1,7 @@
 import random
 
 def mainRoll(rollInfo):
+    # Checks if input is valid
     valid_letters = [0,1,2,3,4,5,6,7,8,9,'d','+', '-', ' ']
     spaceSplit = rollInfo.split(' ')
     # item 1 of spaceSplit: Sides of dice & number of dice,
@@ -11,6 +12,7 @@ def mainRoll(rollInfo):
             #raise TypeError("Not a valid input!") #Not raising errors, because it would break a discord bot
             return('()That is not a valid input')
 
+    # Sets up splits and items in lists
     d_split = spaceSplit[0].split("d")
     amount_of_dice = d_split[0]
     sidesOfDice = d_split[1]
@@ -19,22 +21,26 @@ def mainRoll(rollInfo):
     dice_multiply = None
     dice_sum = 0
 
+    #Makes the number of dice work
     if amount_of_dice == "":
         amount_of_dice = 1
     else:
         amount_of_dice = int(amount_of_dice)
 
+    #Returns an error if the sides on the dice isn't set
     if sidesOfDice == "":
         #raise TypeError("Not a valid input!")
         return('()That is not a valid input')
     else:
         sidesOfDice = int(sidesOfDice)
 
+    # "Rolls" the dice
     for i in range(amount_of_dice):
         randomNumber = random.randint(1, sidesOfDice)
         dice_rolls.append(randomNumber)
         dice_sum += randomNumber
 
+    # Runs operations
     if len(spaceSplit) > 1:
         # Arguments!
         for arg in spaceSplit[1:]:
@@ -52,6 +58,7 @@ def mainRoll(rollInfo):
                 dice_sum = int(dice_sum)*int(arg[1:])
                 dice_multiply = int(arg[1:])
 
+    # Gives a "nice" looking output
     if len(dice_rolls) == 1 and dice_multiply == None and dice_add == None: return f'The random number is {dice_sum}'
     appendRoll = ''
     if dice_add != None: appendRoll += f'Added:{dice_add}; '
